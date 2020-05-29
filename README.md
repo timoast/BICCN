@@ -21,6 +21,12 @@ the environment.yaml file. This will install all the dependencies needed:
 conda env create -f environment.yaml
 ```
 
+Or using [mamba](https://github.com/QuantStack/mamba):
+
+```
+mamba env create -f environment.yaml
+```
+
 This creates an environment called `biccn`. Activate this environment when running the
 pipeline: `conda activate biccn`.
 
