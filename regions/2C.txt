@@ -1,0 +1,2 @@
+http://data.nemoarchive.org/biccn/grant/cemba/ecker/chromatin/scell/raw/2C/CEMBA180409_2C/CEMBA180409_2C.demultiplexed.fastq.tar
+http://data.nemoarchive.org/biccn/grant/cemba/ecker/chromatin/scell/raw/2C/CEMBA180410_2C/CEMBA180410_2C.demultiplexed.fastq.tar
