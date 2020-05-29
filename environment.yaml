@@ -1,4 +1,4 @@
-name: snareseq
+name: biccn
 channels:
  - bioconda
  - conda-forge
