@@ -1,0 +1,13 @@
+name: snareseq
+channels:
+ - bioconda
+ - conda-forge
+dependencies:
+ - python>=3.7
+ - snakemake
+ - bwa
+ - samtools
+ - tabix
+ - pip
+ - pip:
+   - sinto>=0.5.0
