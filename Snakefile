@@ -98,6 +98,6 @@ rule sort_frags:
         """
         sort -k1,1 -k2,2n fragments/{wildcards.rep}.bed > fragments/{wildcards.rep}.sort.bed
         bgzip -@ {threads} fragments/{wildcards.rep}.sort.bed
-        tabix -p bed fragments/{wildcards.rep}.sort.bed
+        tabix -p bed fragments/{wildcards.rep}.sort.bed.gz
         rm fragments/{wildcards.rep}.bed
         """
