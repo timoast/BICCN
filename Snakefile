@@ -93,6 +93,7 @@ rule sort_frags:
         "fragments/{rep}.bed"
     output:
         "fragments/{rep}.sort.bed.gz"
+    threads: 5
     shell:
         """
         sort -k1,1 -k2,2n fragments/{wildcards.rep}.bed > fragments/{wildcards.rep}.sort.bed
