@@ -7,7 +7,7 @@ IND, = glob_wildcards("regions/{rep}.txt")
 
 
 rule all:
-    input: expand("fragments/{rep}.bed.gz", rep=IND)
+    input: expand("fragments/{rep}.sort.bed.gz", rep=IND)
 
 rule get_genome:
     """Download genome and build bwa index"""
@@ -81,14 +81,22 @@ rule fragments:
     input:
         "mapped/{rep}.sort.bam"
     output:
-        "fragments/{rep}.bed.gz"
+        "fragments/{rep}.bed"
     threads: 10
     shell:
         """
-        sinto fragments -b {input} -p {threads} -f fragments/{wildcards.rep}.tmp --barcode_regex "[^:]*"
-        sort -k1,1 -k2,2n fragments/{wildcards.rep}.tmp > fragments/{wildcards.rep}.bed
-        bgzip -@ {threads} fragments/{wildcards.rep}.bed
-        tabix -p bed fragments/{wildcards.rep}.bed
+        sinto fragments -b {input} -p {threads} -f fragments/{wildcards.rep}.bed --barcode_regex "[^:]*"
+        """
 
-        rm fragments/{wildcards.rep}.tmp
+rule sort_frags:
+    input:
+        "fragments/{rep}.bed"
+    output:
+        "fragments/{rep}.sort.bed.gz"
+    shell:
+        """
+        sort -k1,1 -k2,2n fragments/{wildcards.rep}.bed > fragments/{wildcards.rep}.sort.bed
+        bgzip -@ {threads} fragments/{wildcards.rep}.sort.bed
+        tabix -p bed fragments/{wildcards.rep}.sort.bed
+        rm fragments/{wildcards.rep}.bed
         """
