@@ -50,6 +50,7 @@ rule download:
         cd fastq/{wildcards.rep}
         for i in *.tar; do
             tar -xf $i
+            rm $i
         done
         mv */* .
         cat *R1.fastq.gz > read1.fastq.gz
