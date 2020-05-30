@@ -48,7 +48,9 @@ rule download:
         """
         wget -i {input} -P fastq/{wildcards.rep}
         cd fastq/{wildcards.rep}
-        tar -xf *.tar
+        for i in *.tar; do
+            tar -xf $i
+        done
         mv */* .
         cat *R1.fastq.gz > read1.fastq.gz
         cat *R2.fastq.gz > read2.fastq.gz
