@@ -11,7 +11,6 @@ Steps:
 4. Sort and index bam file with samtools
 5. Create fragment file from bam file using sinto
 6. Sort, bgzip-compress, and index fragment file using bgzip and tabix
-7. Call peaks for each brain region using Genrich
 
 The pipeline is constructed using snakemake. To run the pipeline, first 
 install miniconda, then create a conda environment for the pipeline using
@@ -36,7 +35,7 @@ You can execute a dry-run of the pipeline to see what steps will be run using:
 To run the pipeline and generate the outputs, run:
 
 ```
-snakemake --cores 8
+snakemake --cores 10
 ```
 
 Map of the pipeline:
