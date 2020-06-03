@@ -7,7 +7,9 @@ IND, = glob_wildcards("regions/{rep}.txt")
 
 
 rule all:
-    input: "fragments/combined/fragments.sort.bed.gz"
+    input:
+        "fragments/combined/fragments.sort.bed.gz",
+        expand("peaks/{rep}.bed", rep=IND)
 
 rule get_genome:
     """Download genome and build bwa index"""
@@ -135,4 +137,28 @@ rule combine_fragments:
         bgzip -@ {threads} fragments.sort.bed
         tabix -p bed fragments.sort.bed.gz
         rm fragments.bed
+        """
+
+rule namesort:
+    input:
+        "mapped/{rep}.sort.bam"
+    output:
+        "mapped/{rep}.qname.bam"
+    threads: 10
+    message: "Sort BAM files by QNAME"
+    shell:
+        """
+        samtools sort -@ {threads} -n {input} -o {output}
+        """
+
+rule callpeaks:
+    input:
+        "mapped/{rep}.qname.bam"
+    output:
+        "peaks/{rep}.bed"
+    threads: 1
+    message: "Call peaks"
+    shell:
+        """
+        Genrich -t {input} -j -o {output}
         """

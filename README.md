@@ -5,15 +5,16 @@ BICCN consortium.
 
 Steps:
 
-1. Download fastq files from NEMO for each brain region
+1. Download fastq files from [NEMO](https://nemoarchive.org/) for each brain region
 2. Download mm10 genome fasta from UCSC and create bwa index
-3. Map fastq files to mm10 using bwa mem, pipe output to samtools to create bam file
-4. Sort and index bam file with samtools
-5. Create fragment file from bam file using sinto
+3. Map fastq files to mm10 using [bwa mem](https://github.com/lh3/bwa), pipe output to samtools to create bam file
+4. Sort and index bam file with [samtools](https://www.htslib.org/)
+5. Create fragment file from bam file using [sinto](https://github.com/timoast/sinto)
 6. Sort, bgzip-compress, and index fragment file using bgzip and tabix
+7. Call peaks for each region using [Genrich](https://github.com/jsh58/Genrich)
 
-The pipeline is constructed using snakemake. To run the pipeline, first 
-install miniconda, then create a conda environment for the pipeline using
+The pipeline is constructed using [snakemake](https://snakemake.readthedocs.io/en/stable/index.html).
+To run the pipeline, first install miniconda, then create a conda environment for the pipeline using
 the environment.yaml file. This will install all the dependencies needed:
 
 ```
