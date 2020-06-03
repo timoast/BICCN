@@ -27,6 +27,8 @@ Or using [mamba](https://github.com/QuantStack/mamba):
 mamba env create -f environment.yaml
 ```
 
+Note that Genrich is not available through conda, and so needs to be downloaded and compiled separately.
+
 This creates an environment called `biccn`. Activate this environment when running the
 pipeline: `conda activate biccn`.
 
