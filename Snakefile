@@ -104,7 +104,7 @@ rule prefix:
     message: "Add region prefix to cell names"
     shell:
         """
-        awk 'BEGIN {{FS=OFS="\t"}} {{print $1,$2,$3,"{wildcards.rep}_"$4,$5}}' {input} > {output}
+        awk 'BEGIN {{FS=OFS="\\t"}} {{print $1,$2,$3,"{wildcards.rep}_"$4,$5}}' {input} > {output}
         rm {input}
         """
 
