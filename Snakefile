@@ -9,7 +9,7 @@ IND, = glob_wildcards("regions/{rep}.txt")
 rule all:
     input:
         "fragments/combined/fragments.sort.bed.gz",
-        expand("peaks/{rep}.bed", rep=IND)
+        "peaks/unified_peaks.bed"
 
 rule get_genome:
     """Download genome and build bwa index"""
@@ -162,3 +162,10 @@ rule callpeaks:
         """
         Genrich -t {input} -j -o {output}
         """
+
+rule unify:
+    input: expand("peaks/{rep}.bed", rep=IND)
+    output: "peaks/unified_peaks.bed"
+    threads: 1
+    message: "Unify peaks"
+    shell: "Rscript code/unify.R"
