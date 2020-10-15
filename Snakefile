@@ -139,33 +139,14 @@ rule combine_fragments:
         rm fragments.bed
         """
 
-rule namesort:
-    input:
-        "mapped/{rep}.sort.bam"
-    output:
-        "mapped/{rep}.qname.bam"
-    threads: 10
-    message: "Sort BAM files by QNAME"
-    shell:
-        """
-        samtools sort -@ {threads} -n {input} -o {output}
-        """
-
 rule callpeaks:
     input:
-        "mapped/{rep}.qname.bam"
+        expand("fragments/{rep}.sort.bed.gz", rep=IND)
     output:
-        "peaks/{rep}.bed"
+        "peaks/unified_peaks.bed"
     threads: 1
     message: "Call peaks"
     shell:
         """
-        Genrich -t {input} -j -o {output}
+        Rscript code/callpeaks.R
         """
-
-rule unify:
-    input: expand("peaks/{rep}.bed", rep=IND)
-    output: "peaks/unified_peaks.bed"
-    threads: 1
-    message: "Unify peaks"
-    shell: "Rscript code/unify.R"

@@ -10,8 +10,8 @@ Steps:
 3. Map fastq files to mm10 using [bwa mem](https://github.com/lh3/bwa), pipe output to samtools to create bam file
 4. Sort and index bam file with [samtools](https://www.htslib.org/)
 5. Create fragment file from bam file using [sinto](https://github.com/timoast/sinto)
-6. Sort, bgzip-compress, and index fragment file using bgzip and tabix
-7. Call peaks for each region using [Genrich](https://github.com/jsh58/Genrich)
+6. Sort, bgzip-compress, and index fragment file using bgzip and [tabix](https://www.htslib.org/doc/tabix.html)
+7. Call peaks for each region using [MACS2](https://github.com/macs3-project/MACS)
 
 The pipeline is constructed using [snakemake](https://snakemake.readthedocs.io/en/stable/index.html).
 To run the pipeline, first install miniconda, then create a conda environment for the pipeline using
@@ -26,8 +26,6 @@ Or using [mamba](https://github.com/QuantStack/mamba):
 ```
 mamba env create -f environment.yaml
 ```
-
-Note that Genrich is not available through conda, and so needs to be downloaded and compiled separately.
 
 This creates an environment called `biccn`. Activate this environment when running the
 pipeline: `conda activate biccn`.
