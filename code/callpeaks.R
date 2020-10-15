@@ -6,8 +6,7 @@ fragfiles <- list.files(
 )
 fragfiles <- unname(sapply(fragfiles, normalizePath))
 
-
-peakcalls <- sapply(fragfiles, CallPeaks, macs2.path = "/home/stuartt/miniconda3/envs/biccn/bin/macs2")
+peakcalls <- sapply(fragfiles, CallPeaks)
 peakcalls <- sapply(peakcalls, function(x) {
   x[x$score > 100]
 })
