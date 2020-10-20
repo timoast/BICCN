@@ -11,4 +11,4 @@ dependencies:
  - macs2
  - pip
  - pip:
-   - sinto>=0.5.0
+   - sinto>=0.7.2
