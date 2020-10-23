@@ -8,7 +8,7 @@ fragfiles <- unname(sapply(fragfiles, normalizePath))
 
 peakcalls <- sapply(fragfiles, CallPeaks)
 peakcalls <- sapply(peakcalls, function(x) {
-  x[x$score > 100]
+  x[x$score > 150]
 })
 
 peakcalls <- Reduce(f = c, x = peakcalls)
